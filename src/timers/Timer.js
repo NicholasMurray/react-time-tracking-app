@@ -1,9 +1,33 @@
 import React, {Component} from 'react';
+import TimerActionButton from './TimerActionButton';
 import { renderElapsedString } from '../helpers/utilities';
 
 class Timer extends Component {
+  constructor(props) {
+    super(props);
+    this.handleTrashClick = this.handleTrashClick.bind(this)
+    this.handleStartClick = this.handleStartClick.bind(this)
+    this.handleStopClick = this.handleStopClick.bind(this)
+  }
+  handleTrashClick() {
+    this.props.onTrashClick(this.props.id);
+  } 
+  componentDidMount() {
+    this.forceUpdateInterval = setInterval(() => this.forceUpdate(), 50);
+  }
+  componentWillUnmount() {
+    clearInterval(this.forceUpdateInterval);
+  }
+  handleStartClick() {
+    this.props.onStartClick(this.props.id);
+  }
+  handleStopClick() {
+    this.props.onStopClick(this.props.id);
+  }
   render() {
-    const elapsedString = renderElapsedString(this.props.elapsed)
+    const elapsedString = renderElapsedString(
+      this.props.elapsed, this.props.runningSince
+    );
     return (
       <div className='ui centered card'>
         <div className='content'>
@@ -19,17 +43,25 @@ class Timer extends Component {
             </h2>
           </div>
           <div className='extra content'>
-            <span className='right floated edit icon'>
+            <span 
+              className='right floated edit icon' 
+              onClick={this.props.onEditClick}
+            >
               <i className='edit icon'></i>
             </span>
-            <span className='right floated trash icon'>
+            <span 
+              className='right floated trash icon'
+              onClick={this.handleTrashClick}
+            >
               <i className='trash icon'></i>
             </span>
           </div>
         </div>
-        <div className='ui bottom attached blue basic button'>
-          Start
-        </div>
+        <TimerActionButton
+          timerIsRunning={!!this.props.runningSince}
+          onStartClick={this.handleStartClick}
+          onStopClick={this.handleStopClick}
+        />
       </div>
     );
   }
