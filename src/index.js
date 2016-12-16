@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import TimersDashBoard from './timers/TimersDashBoard';
+import './styles/semantic-ui/semantic.min.css'
+import './styles/App.css'
 
 ReactDOM.render(
-  <App />,
+  <TimersDashBoard />,
   document.getElementById('root')
 );
