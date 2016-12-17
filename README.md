@@ -1,5 +1,10 @@
 #React Time Tracking App
 
+** Need to also npm install babel-cli and also body-parser
+
+** Needed to install the following chrome extension as not runnning the server *and* the code on localhost:3000
+https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related
+
 ## Available Scripts
 
 In the project directory, you can run:

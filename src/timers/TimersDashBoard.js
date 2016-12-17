@@ -2,29 +2,22 @@ import React, {Component} from 'react';
 import EditableTimerList from './EditableTimerList';
 import ToggleableTimerForm from './ToggleableTimerForm';
 import { newTimer } from '../helpers/utilities';
-import uuidV4 from 'uuid/v4';
+import { 
+        getTimers as clientGetTimers, 
+        startTimer as clientStartTimer,
+        stopTimer as clientStopTimer,
+        createTimer as clientCreateTimer,
+        deleteTimer as clientDeleteTimer,
+        updateTimer as clientUpdateTimer
+       } from '../helpers/client';
 
 class TimersDashBoard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      timers: [ 
-                {
-                  title: 'Practice squat',
-                  project: 'Gym Chores',
-                  id: uuidV4(),
-                  elapsed: 5456099,
-                  runningSince: Date.now(),
-                },
-                {
-                  title: 'Bake squash',
-                  project: 'Kitchen Chores',
-                  id: uuidV4(),
-                  elapsed: 1273998,
-                  runningSince: null,
-                },
-              ]
+      timers: []
     }
+    this.loadTimersFromServer = this.loadTimersFromServer.bind(this)
     this.handleCreateFormSubmit = this.handleCreateFormSubmit.bind(this)
     this.handleEditFormSubmit = this.handleEditFormSubmit.bind(this)
     this.handleTrashClick = this.handleTrashClick.bind(this)
@@ -35,6 +28,16 @@ class TimersDashBoard extends Component {
     this.updateTimer = this.updateTimer.bind(this)
     this.startTimer = this.startTimer.bind(this)
     this.stopTimer = this.stopTimer.bind(this)
+  }
+  componentDidMount() {
+    this.loadTimersFromServer();
+    setInterval(this.loadTimersFromServer, 5000);
+  }
+  loadTimersFromServer() {
+      clientGetTimers((serverTimers) => (
+      this.setState({ timers: serverTimers })
+      )
+    );
   }
   handleCreateFormSubmit(timer) {
     this.createTimer(timer);
@@ -56,11 +59,15 @@ class TimersDashBoard extends Component {
     this.setState({
       timers: this.state.timers.concat(t),
     })
+
+    clientCreateTimer(t);
   }
   deleteTimer(timerId) {
     this.setState({
       timers: this.state.timers.filter(t => t.id !== timerId),
     });
+
+    clientDeleteTimer({ id: timerId });
   }
   updateTimer(attrs) {
     this.setState({
@@ -75,6 +82,8 @@ class TimersDashBoard extends Component {
           }
       }),
     });
+
+    clientUpdateTimer(attrs);
   }
   startTimer(timerId) {
     const now = Date.now();
@@ -89,6 +98,10 @@ class TimersDashBoard extends Component {
         }
       })
     });
+
+    clientStartTimer(
+      { id: timerId, start: now }
+    );
   }
   stopTimer(timerId) {
     const now = Date.now();
@@ -105,6 +118,10 @@ class TimersDashBoard extends Component {
         }
       })
     });
+
+    clientStopTimer(
+      { id: timerId, stop: now }
+    );
   }
   render() {
     return (
