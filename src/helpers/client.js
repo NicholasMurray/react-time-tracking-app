@@ -1,6 +1,6 @@
 
   export function getTimers(success) {
-    return fetch('http://localhost:7000/api/timers', {
+    return fetch('/api/timers', {
       headers: {
         Accept: 'application/json',
       },
@@ -10,7 +10,7 @@
   }
 
   export function createTimer(data) {
-    return fetch('http://localhost:7000/api/timers', {
+    return fetch('/api/timers', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -21,7 +21,7 @@
   }
 
   export function updateTimer(data) {
-    return fetch('http://localhost:7000/api/timers', {
+    return fetch('/api/timers', {
       method: 'put',
       body: JSON.stringify(data),
       headers: {
@@ -32,7 +32,7 @@
   }
 
   export function deleteTimer(data) {
-    return fetch('http://localhost:7000/api/timers', {
+    return fetch('/api/timers', {
       method: 'delete',
       body: JSON.stringify(data),
       headers: {
@@ -43,7 +43,7 @@
   }
 
   export function startTimer(data) {
-    return fetch('http://localhost:7000/api/timers/start', {
+    return fetch('/api/timers/start', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -54,7 +54,7 @@
   }
 
   export function stopTimer(data) {
-    return fetch('http://localhost:7000/api/timers/stop', {
+    return fetch('/api/timers/stop', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
