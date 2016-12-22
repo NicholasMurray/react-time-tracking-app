@@ -40,3 +40,4 @@ it('should have a time elapsed displayed in timer format', () => {
     wrapper.contains('02:29:46')
   ).toBe(true)
 });
+
