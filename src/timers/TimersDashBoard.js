@@ -10,6 +10,8 @@ import {
         deleteTimer as clientDeleteTimer,
         updateTimer as clientUpdateTimer
        } from '../helpers/client';
+import logo from '../images/logo.svg';
+import '../styles/App.css'
 
 class TimersDashBoard extends Component {
   constructor(props) {
@@ -125,18 +127,23 @@ class TimersDashBoard extends Component {
   }
   render() {
     return (
-      <div className="ui three column centered grid">
-        <div className="column">
-          <EditableTimerList 
-            timers={this.state.timers} 
-            onFormSubmit={this.handleEditFormSubmit}
-            onTrashClick={this.handleTrashClick} 
-            onStartClick={this.handleStartClick}
-            onStopClick={this.handleStopClick}
-          />
-          <ToggleableTimerForm
-            onFormSubmit={this.handleCreateFormSubmit}
-          />
+      <div>
+        <div className="ui three column centered grid">
+            <img src={logo} className="App-logo" alt="logo" />
+        </div>
+        <div className="ui three column centered grid">
+          <div className="column">
+            <EditableTimerList 
+              timers={this.state.timers} 
+              onFormSubmit={this.handleEditFormSubmit}
+              onTrashClick={this.handleTrashClick} 
+              onStartClick={this.handleStartClick}
+              onStopClick={this.handleStopClick}
+            />
+            <ToggleableTimerForm
+              onFormSubmit={this.handleCreateFormSubmit}
+            />
+          </div>
         </div>
       </div>
     );
