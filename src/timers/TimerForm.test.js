@@ -87,5 +87,8 @@ it('should submit', () => {
   titleInput.simulate('change', {target: {value: 'title changed'}});
   projectInput.simulate('change', {target: {value: 'title project'}});
   button.simulate('click');
-  expect(onFormSubmit.calledOnce).toBe(true);
-})
+  expect(
+    onFormSubmit.calledOnce
+  ).toBe(true);
+  wrapper.unmount();
+});
