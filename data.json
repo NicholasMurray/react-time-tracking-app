@@ -19,5 +19,19 @@
         "id": "2c43306e-5b44-4ff8-8753-33c35adbd06f",
         "elapsed": 11750,
         "runningSince": 1456225941911
+    },
+    {
+        "title": "New One",
+        "project": "Project New One",
+        "id": "016fddde-9900-49b0-b3a1-13370cb3865c",
+        "elapsed": 0,
+        "runningSince": null
+    },
+    {
+        "title": "Newer One",
+        "project": "New Test 2",
+        "id": "0a755b6b-dff1-44ed-ab94-f08e74eaadf4",
+        "elapsed": 0,
+        "runningSince": null
     }
 ]
