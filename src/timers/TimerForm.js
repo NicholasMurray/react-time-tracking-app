@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 
 class TimerForm extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-  handleSubmit () {
+  handleSubmit = () => {
     this.props.onFormSubmit({
       id: this.props.id,
       title: this.refs.title.value,

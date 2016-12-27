@@ -8,26 +8,21 @@ class EditableTimer extends Component {
     this.state = {
       editFormOpen: false
     }
-    this.handleEditClick = this.handleEditClick.bind(this)
-    this.handleFormClose = this.handleFormClose.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.closeForm = this.closeForm.bind(this)
-    this.openForm = this.openForm.bind(this)
   }
-  handleEditClick() {
+  handleEditClick = () => {
     this.openForm();
   }
-  handleFormClose() {
+  handleFormClose = () => {
     this.closeForm();
   }
-  handleSubmit(timer) {
+  handleSubmit = (timer) => {
     this.props.onFormSubmit(timer);
     this.closeForm();
   }
-  closeForm() {
+  closeForm = () => {
     this.setState({ editFormOpen: false });
   }
-  openForm() {
+  openForm = () => {
     this.setState({ editFormOpen: true });
   }
   render() {

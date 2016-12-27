@@ -19,44 +19,33 @@ class TimersDashBoard extends Component {
     this.state = {
       timers: []
     }
-    this.loadTimersFromServer = this.loadTimersFromServer.bind(this)
-    this.handleCreateFormSubmit = this.handleCreateFormSubmit.bind(this)
-    this.handleEditFormSubmit = this.handleEditFormSubmit.bind(this)
-    this.handleTrashClick = this.handleTrashClick.bind(this)
-    this.handleStartClick = this.handleStartClick.bind(this)
-    this.handleStopClick = this.handleStopClick.bind(this)
-    this.createTimer = this.createTimer.bind(this)
-    this.deleteTimer = this.deleteTimer.bind(this)
-    this.updateTimer = this.updateTimer.bind(this)
-    this.startTimer = this.startTimer.bind(this)
-    this.stopTimer = this.stopTimer.bind(this)
   }
   componentDidMount() {
     this.loadTimersFromServer();
     setInterval(this.loadTimersFromServer, 5000);
   }
-  loadTimersFromServer() {
+  loadTimersFromServer = () => {
       clientGetTimers((serverTimers) => (
       this.setState({ timers: serverTimers })
       )
     );
   }
-  handleCreateFormSubmit(timer) {
+  handleCreateFormSubmit = (timer) => {
     this.createTimer(timer);
   }
-  handleEditFormSubmit(attrs) {
+  handleEditFormSubmit = (attrs) => {
     this.updateTimer(attrs);
   }
-  handleTrashClick(timerId) {
+  handleTrashClick = (timerId) => {
     this.deleteTimer(timerId);
   }
-  handleStartClick(timerId) {
+  handleStartClick = (timerId) => {
     this.startTimer(timerId);
   }
-  handleStopClick(timerId) {
+  handleStopClick = (timerId) => {
     this.stopTimer(timerId);
   }
-  createTimer(timer) {
+  createTimer = (timer) => {
     const t = newTimer(timer);
     this.setState({
       timers: this.state.timers.concat(t),
@@ -64,14 +53,14 @@ class TimersDashBoard extends Component {
 
     clientCreateTimer(t);
   }
-  deleteTimer(timerId) {
+  deleteTimer = (timerId) => {
     this.setState({
       timers: this.state.timers.filter(t => t.id !== timerId),
     });
 
     clientDeleteTimer({ id: timerId });
   }
-  updateTimer(attrs) {
+  updateTimer = (attrs) => {
     this.setState({
       timers: this.state.timers.map((timer) => {
           if (timer.id === attrs.id) {
@@ -87,7 +76,7 @@ class TimersDashBoard extends Component {
 
     clientUpdateTimer(attrs);
   }
-  startTimer(timerId) {
+  startTimer = (timerId) => {
     const now = Date.now();
     this.setState({
       timers: this.state.timers.map((timer) => {
@@ -105,7 +94,7 @@ class TimersDashBoard extends Component {
       { id: timerId, start: now }
     );
   }
-  stopTimer(timerId) {
+  stopTimer = (timerId) => {
     const now = Date.now();
     this.setState({
       timers: this.state.timers.map((timer) => {

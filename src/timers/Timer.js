@@ -3,13 +3,7 @@ import TimerActionButton from './TimerActionButton';
 import { renderElapsedString } from '../helpers/utilities';
 
 class Timer extends Component {
-  constructor(props) {
-    super(props);
-    this.handleTrashClick = this.handleTrashClick.bind(this)
-    this.handleStartClick = this.handleStartClick.bind(this)
-    this.handleStopClick = this.handleStopClick.bind(this)
-  }
-  handleTrashClick() {
+  handleTrashClick = () => {
     this.props.onTrashClick(this.props.id);
   } 
   componentDidMount() {
@@ -18,10 +12,10 @@ class Timer extends Component {
   componentWillUnmount() {
     clearInterval(this.forceUpdateInterval);
   }
-  handleStartClick() {
+  handleStartClick = () => {
     this.props.onStartClick(this.props.id);
   }
-  handleStopClick() {
+  handleStopClick = () => {
     this.props.onStopClick(this.props.id);
   }
   render() {

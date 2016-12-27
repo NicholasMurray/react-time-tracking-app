@@ -7,17 +7,14 @@ class ToggleableTimerForm extends Component {
     this.state = {
       isOpen: false
     }
-    this.handleFormOpen = this.handleFormOpen.bind(this)
-    this.handleFormClose = this.handleFormClose.bind(this)
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
-  handleFormOpen() {
+  handleFormOpen = () => {
     this.setState({ isOpen: true });
   }
-  handleFormClose() {
+  handleFormClose = () => {
     this.setState({ isOpen: false });
   }
-  handleFormSubmit(timer) {
+  handleFormSubmit = (timer) => {
     this.props.onFormSubmit(timer);
     this.setState({ isOpen: false });
   }
